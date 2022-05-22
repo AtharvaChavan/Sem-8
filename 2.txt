@@ -1,0 +1,19 @@
+***mpi.java***
+
+package ASS_2;
+import mpi.* ;
+
+public class mpi {
+	public static void main(String[] args) {
+		
+		MPI.Init(args) ;
+		int me = MPI.COMM_WORLD.Rank() ;
+		int size = MPI.COMM_WORLD.Size() ;
+		System.out.println("Hi from <" + me + ">");
+		MPI.Finalize() ;
+	}
+}
+
+command(in gitbash):- 
+1) javac -cp $MPJ_HOME/lib/mpj.jar mpi.java
+2) MPJ_HOME/bin/mpjrun.sh -np 4 mpi

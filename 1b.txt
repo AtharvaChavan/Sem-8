@@ -1,0 +1,48 @@
+***client.java***
+
+package ASS_1B;
+
+import java.io.DataInput;
+import java.io.DataInputStream;
+import java.net.Socket;
+
+public class client {
+	public static void main(String[] args) {
+		try
+		{
+			Socket s = new Socket("127.0.0.1", 3001);
+			
+			DataInput dis = new DataInputStream(s.getInputStream());
+			String msg = dis.readUTF();
+			System.out.println(msg);
+		}
+		catch (Exception e) {
+		}
+	}
+}
+
+
+***server.java***
+
+package ASS_1B;
+
+import java.io.*;
+import java.net.*;
+
+public class server {
+	public static void main(String[] args) {
+		try
+		{
+			@SuppressWarnings("resource")
+			ServerSocket server = new ServerSocket(3001);
+			Socket s = server.accept();
+			
+			System.out.println("Connected To Server for Message Passing from DYPCOE...");
+			
+			DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+			
+			dos.writeUTF(" Hi Abhijeet ...Welcome to socket");
+		} catch (Exception e) {
+		}
+	}
+}
